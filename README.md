@@ -6,7 +6,7 @@ Self-hosted IT asset management with SQLite storage. Track laptops, licenses, ac
 
 Host Snipe-IT on Railway. This template provisions Snipe-IT (v8, alpine) with a persistent volume for its SQLite database — single service, Hobby-tier friendly.
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite-1)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite)
 
 ## Why Deploy
 
