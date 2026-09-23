@@ -8,7 +8,8 @@ RUN apk add --no-cache php84-pdo_sqlite bash
 # Fix white-on-white text: upstream setup layout (resources/views/layouts/setup.blade.php)
 # has <html> without data-theme="light". Without it, --box-bg is undefined (white bg)
 # and --color-fg follows OS preference (white in dark mode) → invisible text.
-RUN sed -i 's/<html>/<html data-theme="light">/' /var/www/html/resources/views/layouts/setup.blade.php
+# Inject data-theme into the bare <html> tag (idempotent via marker below).
+RUN sed -i 's|<html>|<html data-theme="light">|' /var/www/html/resources/views/layouts/setup.blade.php
 
 # Ensure the sqlite database file is on the persistent volume.
 # config/database.php hardcodes the sqlite path to database_path('database.sqlite')
