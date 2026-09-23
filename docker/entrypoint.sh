@@ -27,4 +27,9 @@ chown apache:root /var/www/html/database 2>/dev/null || true
 # - runs php artisan migrate --force
 # - execs httpd -DNO_DETACH
 # (invoked via sh because the upstream file is not +x in the image)
+# Force Railway's X-Forwarded-Proto: https to be seen as HTTPS by PHP.
+# Without this, Laravel's request()->url() returns http:// and the pre-flight
+# wizard fails because it can't reconcile APP_URL (https) with request URL (http).
+echo 'SetEnv HTTPS on' > /etc/apache2/conf.d/forwarded-https.conf
+
 exec sh /var/www/html/docker/startup_alpine.sh
