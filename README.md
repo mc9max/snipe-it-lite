@@ -6,7 +6,7 @@ Self-hosted IT asset management with SQLite storage. Track laptops, licenses, ac
 
 Host Snipe-IT on Railway. This template provisions Snipe-IT (v8, alpine) with a persistent volume for its SQLite database — single service, Hobby-tier friendly.
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/faithful-motivation)
 
 ## Why Deploy
 
@@ -30,7 +30,7 @@ Snipe-IT is the open-source standard for IT asset management (50k+ GitHub stars)
 
 This template runs Snipe-IT as a single service on Railway:
 
-- **Image** — `ghcr.io/mc9max/snipe-it-lite:latest` (Snipe-IT v8 alpine + PHP SQLite driver)
+- **Image** — Built from source (Dockerfile) using `snipe/snipe-it:latest-alpine` as the base image, with PHP SQLite driver added
 - **Database** — SQLite file on a 5GB volume at `/var/lib/snipeit/database.sqlite`, created automatically on first boot
 - **Web server** — Apache + PHP-FPM inside the container, listening on port 80
 - **Scaling** — one replica only (SQLite does not support multi-writer); scale vertically if needed

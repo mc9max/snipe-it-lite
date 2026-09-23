@@ -3,7 +3,7 @@ FROM snipe/snipe-it:latest-alpine
 LABEL org.opencontainers.image.source=https://github.com/mc9max/snipe-it-lite
 
 # Install PHP SQLite PDO driver (not included in base alpine image)
-RUN apk add --no-cache php84-pdo_sqlite
+RUN apk add --no-cache php84-pdo_sqlite bash
 
 # Ensure the sqlite database file is on the persistent volume.
 # config/database.php hardcodes the sqlite path to database_path('database.sqlite')
