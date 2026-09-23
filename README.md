@@ -6,7 +6,7 @@ Self-hosted IT asset management with SQLite storage. Track laptops, licenses, ac
 
 Host Snipe-IT on Railway. This template provisions Snipe-IT (v8, alpine) with a persistent volume for its SQLite database — single service, Hobby-tier friendly.
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite-1)
 
 ## Why Deploy
 
@@ -76,7 +76,8 @@ Snipe-IT docs: https://snipe-it.readme.io/docs — covers asset lifecycle, label
 | `DB_DATABASE` | SQLite file path. Must stay on the volume. | `/var/lib/snipeit/database.sqlite` |
 | `APP_ENV` | Laravel environment. | `production` |
 | `APP_DEBUG` | Debug output. Keep off in production. | `false` |
-| `APP_TRUSTED_PROXIES` | Railway proxy range for correct scheme/HTTPS handling. | `10.0.0.0/8` |
+| `APP_TRUSTED_PROXIES` | Trust all proxies (Railway is the only proxy). Required for correct URL detection. | `**` |
+| `APP_TRUSTED_HEADERS` | Trust Railway's X-Forwarded-* headers so Laravel detects HTTPS correctly. | `HEADER_X_FORWARDED_FOR,HEADER_X_FORWARDED_HOST,HEADER_X_FORWARDED_PORT,HEADER_X_FORWARDED_PROTO,HEADER_X_FORWARDED_PREFIX` |
 | `SESSION_DRIVER` | Session storage backend. | `file` |
 | `MAIL_MAILER` | Mail transport. `log` stores mail in deploy logs until you configure SMTP. | `log` |
 | `PHP_FPM_PM_MAX_CHILDREN` | PHP-FPM worker cap. 2 fits small plans. | `2` |
