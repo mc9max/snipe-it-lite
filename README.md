@@ -6,7 +6,7 @@ Self-hosted IT asset management with SQLite storage. Track laptops, licenses, ac
 
 Host Snipe-IT on Railway. This template provisions Snipe-IT (v8, alpine) with a persistent volume for its SQLite database — single service, Hobby-tier friendly.
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/N5s3z8)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/snipe-it-lite)
 
 ## Why Deploy
 
@@ -26,9 +26,32 @@ Snipe-IT is the open-source standard for IT asset management (50k+ GitHub stars)
 - **Home lab inventory** — keep hardware, VMs, and gear catalogued with photos and warranties
 - **Paired with your stack** — REST API for integrating inventory into CMDBs and wikis
 
-### Deployment Dependencies
+## About Hosting
+
+This template runs Snipe-IT as a single service on Railway:
+
+- **Image** — `ghcr.io/mc9max/snipe-it-lite:latest` (Snipe-IT v8 alpine + PHP SQLite driver)
+- **Database** — SQLite file on a 5GB volume at `/var/lib/snipeit/database.sqlite`, created automatically on first boot
+- **Web server** — Apache + PHP-FPM inside the container, listening on port 80
+- **Scaling** — one replica only (SQLite does not support multi-writer); scale vertically if needed
+- **Backups** — copy `/var/lib/snipeit/database.sqlite` from the volume, or use Settings → Backups in the UI
+
+## Features
+
+- Asset check-in/check-out with full audit history
+- Custom fields, categories, manufacturers, and status labels
+- Software license tracking with seat counts
+- Accessories and consumables inventory
+- QR-code and barcode asset labels
+- REST API with token auth
+- Optional LDAP / SAML single sign-on
+- Email alerts (configure SMTP after deploy)
+
+## Dependencies for
 
 This template is self-contained — no external services required. All data persists on the service's volume at `/var/lib/snipeit`. The instance is ready out of the box on one-click deploy.
+
+### Deployment Dependencies
 
 **After first successful deploy:**
 
@@ -40,6 +63,8 @@ This template is self-contained — no external services required. All data pers
 ## Documentation
 
 Snipe-IT docs: https://snipe-it.readme.io/docs — covers asset lifecycle, labels, LDAP, API keys, and backups.
+
+## Configuration
 
 ## Variables
 
