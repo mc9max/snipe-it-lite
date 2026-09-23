@@ -22,6 +22,9 @@ chown -h apache:root /var/www/html/database/database.sqlite 2>/dev/null || true
 # Laravel needs the database dir writable for sqlite journal files
 chown apache:root /var/www/html/database 2>/dev/null || true
 
+# Clear Laravel view cache to ensure blade template changes take effect
+cd /var/www/html && php artisan view:clear 2>/dev/null || true
+
 # Hand off to upstream startup script:
 # - creates /var/lib/snipeit/data/* dirs, chowns them
 # - runs php artisan migrate --force
