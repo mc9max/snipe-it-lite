@@ -4,7 +4,7 @@
     "description": "Laravel encryption key. Auto-generated at deploy."
   },
   "APP_URL": {
-    "value": "${{RAILWAY_PUBLIC_DOMAIN}}",
+    "value": "https://${{RAILWAY_PUBLIC_DOMAIN}}",
     "description": "Public URL of the instance. Auto-filled with the Railway domain."
   },
   "DB_CONNECTION": {
