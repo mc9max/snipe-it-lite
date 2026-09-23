@@ -32,4 +32,7 @@ chown apache:root /var/www/html/database 2>/dev/null || true
 # wizard fails because it can't reconcile APP_URL (https) with request URL (http).
 echo 'SetEnv HTTPS on' > /etc/apache2/conf.d/forwarded-https.conf
 
+# Suppress AH00558: httpd: Could not reliably determine the server's FQDN.
+echo 'ServerName localhost' > /etc/apache2/conf.d/servername.conf
+
 exec sh /var/www/html/docker/startup_alpine.sh
