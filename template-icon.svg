@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Background: rounded square, Snipe-IT teal -->
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="#2A3F54"/>
+  <!-- Abstract asset-tag shape: layered rounded rectangles -->
+  <rect x="56" y="72" width="144" height="112" rx="16" fill="#5C7F9E"/>
+  <rect x="72" y="88" width="112" height="80" rx="10" fill="#2A3F54"/>
+  <!-- QR-style abstract blocks (asset label) -->
+  <rect x="88" y="104" width="18" height="18" fill="#7FB2C9"/>
+  <rect x="114" y="104" width="18" height="18" fill="#7FB2C9"/>
+  <rect x="140" y="104" width="18" height="18" fill="#7FB2C9"/>
+  <rect x="88" y="130" width="18" height="18" fill="#7FB2C9"/>
+  <rect x="114" y="130" width="18" height="18" fill="#3E8EB0"/>
+  <rect x="140" y="130" width="18" height="18" fill="#7FB2C9"/>
+  <!-- Status dot -->
+  <circle cx="128" cy="176" r="8" fill="#3E8EB0"/>
+</svg>

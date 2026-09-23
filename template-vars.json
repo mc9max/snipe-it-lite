@@ -1,32 +1,46 @@
 {
-  "$schema": "https://railway.app/schema.json",
-  "name": "Snipe-IT Lite",
-  "description": "Self-hosted IT asset management with SQLite storage - single container, Hobby-tier friendly.",
-  "placeholderDefinitions": [],
-  "services": {
-    "snipe-it": {
-      "source": {
-        "image": "ghcr.io/inapp-mobile/snipe-it-lite:latest"
-      },
-      "variables": {
-        "APP_KEY": "${{secret(32)}}",
-        "APP_URL": "${{RAILWAY_PUBLIC_DOMAIN}}",
-        "DB_CONNECTION": "sqlite",
-        "DB_DATABASE": "/var/lib/snipeit/database.sqlite",
-        "PHP_FPM_PM_MAX_CHILDREN": "2",
-        "PHP_MEMORY_LIMIT": "256M",
-        "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_TRUSTED_PROXIES": "10.0.0.0/8",
-        "SESSION_DRIVER": "file",
-        "MAIL_MAILER": "log"
-      },
-      "volumes": [
-        {
-          "name": "snipeit-data",
-          "mountPath": "/var/lib/snipeit"
-        }
-      ]
-    }
+  "APP_KEY": {
+    "value": "${{secret(32)}}",
+    "description": "Laravel encryption key. Auto-generated at deploy."
+  },
+  "APP_URL": {
+    "value": "${{RAILWAY_PUBLIC_DOMAIN}}",
+    "description": "Public URL of the instance. Auto-filled with the Railway domain."
+  },
+  "DB_CONNECTION": {
+    "value": "sqlite",
+    "description": "Database driver. SQLite keeps everything in one container."
+  },
+  "DB_DATABASE": {
+    "value": "/var/lib/snipeit/database.sqlite",
+    "description": "SQLite file path. Must stay on the volume."
+  },
+  "APP_ENV": {
+    "value": "production",
+    "description": "Laravel environment."
+  },
+  "APP_DEBUG": {
+    "value": "false",
+    "description": "Debug output. Keep off in production."
+  },
+  "APP_TRUSTED_PROXIES": {
+    "value": "10.0.0.0/8",
+    "description": "Railway proxy range for correct HTTPS handling."
+  },
+  "SESSION_DRIVER": {
+    "value": "file",
+    "description": "Session storage backend."
+  },
+  "MAIL_MAILER": {
+    "value": "log",
+    "description": "Mail transport. log stores mail in deploy logs until SMTP is configured."
+  },
+  "PHP_FPM_PM_MAX_CHILDREN": {
+    "value": "2",
+    "description": "PHP-FPM worker cap. 2 fits small plans."
+  },
+  "PHP_MEMORY_LIMIT": {
+    "value": "256M",
+    "description": "PHP memory cap."
   }
 }
