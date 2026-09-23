@@ -35,13 +35,4 @@ echo 'SetEnv HTTPS on' > /etc/apache2/conf.d/forwarded-https.conf
 # Suppress AH00558: httpd: Could not reliably determine the server's FQDN.
 echo 'ServerName localhost' > /etc/apache2/conf.d/servername.conf
 
-# Fix white-on-white: Snipe-IT's compiled CSS uses [data-theme] for --box-bg
-# and light-dark() for --color-fg. Without data-theme on <html>, --box-bg is
-# undefined (white bg) and --color-fg follows the OS preference (white in
-# dark mode) — making all text invisible. Force light theme (idempotent).
-if ! grep -q 'data-theme="light"' /var/www/html/resources/views/layouts/default.blade.php 2>/dev/null; then
-  find /var/www/html/resources/views -name "*.blade.php" -exec sed -i 's/<html/<html data-theme="light"/' {} \; 2>/dev/null || true
-  php artisan view:clear 2>/dev/null || true
-fi
-
 exec bash /var/www/html/docker/startup_alpine.sh
