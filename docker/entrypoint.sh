@@ -22,12 +22,6 @@ chown -h apache:root /var/www/html/database/database.sqlite 2>/dev/null || true
 # Laravel needs the database dir writable for sqlite journal files
 chown apache:root /var/www/html/database 2>/dev/null || true
 
-# Fix white-on-white: inject data-theme="light" into any <html> tag via Apache mod_substitute.
-# Runs at HTTP response level, bypassing Railway's build cache entirely.
-echo 'LoadModule substitute_module modules/mod_substitute.so' > /etc/apache2/conf.d/load-substitute.conf
-echo 'AddOutputFilterByType SUBSTITUTE text/html' > /etc/apache2/conf.d/substitute.conf
-printf '%s\n' 'Substitute "s|<html>|<html data-theme=\"light\">|i"' >> /etc/apache2/conf.d/substitute.conf
-
 # Clear Laravel view cache to ensure blade template changes take effect
 cd /var/www/html && php artisan view:clear 2>/dev/null || true
 
