@@ -22,6 +22,13 @@ chown -h apache:root /var/www/html/database/database.sqlite 2>/dev/null || true
 # Laravel needs the database dir writable for sqlite journal files
 chown apache:root /var/www/html/database 2>/dev/null || true
 
+# Fix white-on-white: inject data-theme="light" into setup layout's <html> tag.
+# Runs at container start (bypasses Railway build cache entirely).
+SETUP_LAYOUT="/var/www/html/resources/views/layouts/setup.blade.php"
+if [ -f "$SETUP_LAYOUT" ] && ! grep -q 'data-theme="light"' "$SETUP_LAYOUT"; then
+  sed -i 's|<html lang=|<html data-theme="light" lang=|' "$SETUP_LAYOUT"
+fi
+
 # Clear Laravel view cache to ensure blade template changes take effect
 cd /var/www/html && php artisan view:clear 2>/dev/null || true
 
