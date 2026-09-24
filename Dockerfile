@@ -1,4 +1,4 @@
-FROM snipe/snipe-it:v8.2.1-alpine
+FROM snipe/snipe-it:latest-alpine
 
 LABEL org.opencontainers.image.source=https://github.com/mc9max/snipe-it-lite
 
@@ -8,8 +8,8 @@ RUN apk add --no-cache php84-pdo_sqlite bash
 # Fix white-on-white text: upstream setup layout (resources/views/layouts/setup.blade.php)
 # has <html> without data-theme="light". Without it, --box-bg is undefined (white bg)
 # and --color-fg follows OS preference (white in dark mode) → invisible text.
-# Inject data-theme into the bare <html> tag (idempotent via marker below).
-RUN sed -i 's|<html>|<html data-theme="light">|' /var/www/html/resources/views/layouts/setup.blade.php
+# Inject data-theme into the <html ...> tag (first occurrence with attributes).
+RUN sed -i 's|<html lang=|<html data-theme="light" lang=|' /var/www/html/resources/views/layouts/setup.blade.php
 
 # Ensure the sqlite database file is on the persistent volume.
 # config/database.php hardcodes the sqlite path to database_path('database.sqlite')
