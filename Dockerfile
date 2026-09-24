@@ -1,4 +1,4 @@
-FROM snipe/snipe-it:latest-alpine
+FROM snipe/snipe-it:v8.2.1-alpine
 
 LABEL org.opencontainers.image.source=https://github.com/mc9max/snipe-it-lite
 
